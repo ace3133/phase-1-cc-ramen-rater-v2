@@ -238,4 +238,34 @@ describe('handleSubmit', () => {
         expect(detailsComment.textContent).toBe(newRamen.comment);
     })
 })
+// Import the functions to be tested
+import { addSubmitListener } from './index';
+
+// Create a mock document
+const { JSDOM } = require('jsdom');
+const dom = new JSDOM('<!DOCTYPE html><html><body></body></html>');
+global.document = dom.window.document;
+
+// Create a mock form element
+const ramenForm = document.createElement('form');
+ramenForm.id = 'new-ramen';
+document.body.appendChild(ramenForm);
+
+// Test the addSubmitListener function
+describe('addSubmitListener', () => {
+    it('should add a submit event listener to the form element', () => {
+        // Mock the form submission event
+        const submitEvent = new Event('submit', { bubbles: true });
+        const spyPreventDefault = jest.spyOn(submitEvent, 'preventDefault');
+        
+        // Call the addSubmitListener function
+        addSubmitListener(ramenForm);
+
+        // Trigger the form submission event
+        ramenForm.dispatchEvent(submitEvent);
+
+        // Check if preventDefault was called
+        expect(spyPreventDefault).toHaveBeenCalled();
+    });
+});
 

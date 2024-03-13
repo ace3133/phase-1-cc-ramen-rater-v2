@@ -238,3 +238,4 @@ describe('handleSubmit', () => {
         expect(detailsComment.textContent).toBe(newRamen.comment);
     })
 })
+

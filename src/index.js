@@ -4,6 +4,7 @@ const ramenDetail = document.getElementById("ramen-detail");
 const ratingDisplay = document.getElementById("rating-display");
 const commentDisplay = document.getElementById("comment-display");
 const newRamenForm = document.getElementById("new-ramen");
+const deleteButton = document.getElementById('Delete');
 const url = "http://localhost:3000/ramens"
 // Callbacks
 const handleClick = (ramen) => {
@@ -33,8 +34,7 @@ const addSubmitListener = () => {
     
   fetch(url,{
    method: "POST",
-   headers: {"Content-Type": "application/json"
-   },
+   headers: {"Content-Type": "application/json"},
    body : JSON.stringify(newRamen)
   })
   .then(res=>res.json())
@@ -61,11 +61,19 @@ const displayRamens = () => {
     
     })
 };
+
 const main = () => {
   displayRamens()
   addSubmitListener()
+  delBtn()
+  
 }
-
+// Practice Functions
+const delBtn = ()=>{
+  deleteButton.addEventListener("click", ()=>{
+    ramenDetail.innerHTML = ''
+  })
+}
 main()
 
 // Export functions for testing

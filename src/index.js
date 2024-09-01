@@ -8,7 +8,6 @@ const url = "http://localhost:3000/ramens"
 // Callbacks
 const handleClick = (ramen) => {
   // Add code  
-  console.log(ramen)
   ratingDisplay.innerHTML = ramen.rating
   commentDisplay.innerHTML = ramen.comment  
   ramenDetail.innerHTML = ''
@@ -39,7 +38,7 @@ const addSubmitListener = () => {
    body : JSON.stringify(newRamen)
   })
   .then(res=>res.json())
-  .then(data=>console.log(data))
+  .then(data=>data)
   })
 
 }
@@ -62,7 +61,6 @@ const displayRamens = () => {
     
     })
 };
-
 const main = () => {
   displayRamens()
   addSubmitListener()
